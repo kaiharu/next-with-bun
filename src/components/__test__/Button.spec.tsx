@@ -1,5 +1,6 @@
 import Button from "@/components/Button";
 import { render, screen } from "@testing-library/react";
+import { describe, expect, it, mock } from "bun:test";
 
 const baseClassName = "rounded-md px-6 py-3 text-white";
 const colorGrayClassName = "bg-zinc-500 hover:bg-zinc-600";
@@ -44,5 +45,12 @@ describe("Button", () => {
     expect(button.className).toContain(baseClassName);
     expect(button.className).toContain(colorOriginalClassName);
     expect(button.textContent).toBe("オリジナル");
+  });
+  it("Click イベントが発火する", () => {
+    const onClick = mock();
+    render(<Button onClick={onClick}>クリック</Button>);
+    const button = screen.getByRole("button", { name: "クリック" });
+    button.click();
+    expect(onClick).toHaveBeenCalled();
   });
 });
