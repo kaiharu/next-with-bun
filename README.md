@@ -19,5 +19,15 @@ bun test
 
 # or
 
+bun test path/to/testfile.tsx
+```
+
+# To test with coverage:
+
+```sh
 bun test --coverage
+
+# or
+
+bun test path/to/testfile.tsx --coverage
 ```
