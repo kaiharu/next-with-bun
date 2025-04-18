@@ -10,40 +10,39 @@ const colorOriginalClassName =
   "bg-purple-500 hover:bg-purple-600 rounded-2xl px-10 py-6";
 
 describe("Button", () => {
-  it("colorGray で「キャンセル」のボタンが表示される", () => {
-    render(<Button colorGray>キャンセル</Button>);
-    const button = screen.getByRole("button", { name: "キャンセル" });
+  it("色を指定したボタンが表示できる", () => {
+    render(<Button color="gray">グレー</Button>);
+    const button = screen.getByRole("button", { name: "グレー" });
     expect(button.className).toContain(baseClassName);
     expect(button.className).toContain(colorGrayClassName);
-    expect(button.textContent).toBe("キャンセル");
+    expect(button.textContent).toBe("グレー");
+
+    render(<Button color="blue">ブルー</Button>);
+    const buttonBlue = screen.getByRole("button", { name: "ブルー" });
+    expect(buttonBlue.className).toContain(baseClassName);
+    expect(buttonBlue.className).toContain(colorBlueClassName);
+    expect(buttonBlue.textContent).toBe("ブルー");
+
+    render(<Button color="red">レッド</Button>);
+    const buttonRed = screen.getByRole("button", { name: "レッド" });
+    expect(buttonRed.className).toContain(baseClassName);
+    expect(buttonRed.className).toContain(colorRedClassName);
+    expect(buttonRed.textContent).toBe("レッド");
+
+    render(<Button color="green">グリーン</Button>);
+    const buttonGreen = screen.getByRole("button", { name: "グリーン" });
+    expect(buttonGreen.className).toContain(baseClassName);
+    expect(buttonGreen.className).toContain(colorGreenClassName);
+    expect(buttonGreen.textContent).toBe("グリーン");
   });
-  it("colorBlue で「決定」のボタンが表示される", () => {
-    render(<Button colorBlue>決定</Button>);
-    const button = screen.getByRole("button", { name: "決定" });
-    expect(button.className).toContain(baseClassName);
-    expect(button.className).toContain(colorBlueClassName);
-    expect(button.textContent).toBe("決定");
-  });
-  it("colorRed で「削除」のボタンが表示される", () => {
-    render(<Button colorRed>削除</Button>);
-    const button = screen.getByRole("button", { name: "削除" });
-    expect(button.className).toContain(baseClassName);
-    expect(button.className).toContain(colorRedClassName);
-    expect(button.textContent).toBe("削除");
-  });
-  it("colorGreen で「更新」のボタンが表示される", () => {
-    render(<Button colorGreen>更新</Button>);
-    const button = screen.getByRole("button", { name: "更新" });
-    expect(button.className).toContain(baseClassName);
-    expect(button.className).toContain(colorGreenClassName);
-    expect(button.textContent).toBe("更新");
-  });
-  it("className で「オリジナル」のボタンが表示される", () => {
-    render(<Button className={colorOriginalClassName}>オリジナル</Button>);
-    const button = screen.getByRole("button", { name: "オリジナル" });
+  it("クラス名が適用される", () => {
+    render(
+      <Button className={colorOriginalClassName}>オリジナルクラス</Button>,
+    );
+    const button = screen.getByRole("button", { name: "オリジナルクラス" });
     expect(button.className).toContain(baseClassName);
     expect(button.className).toContain(colorOriginalClassName);
-    expect(button.textContent).toBe("オリジナル");
+    expect(button.textContent).toBe("オリジナルクラス");
   });
   it("Click イベントが発火する", () => {
     const onClick = jest.fn();
