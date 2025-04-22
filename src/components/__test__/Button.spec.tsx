@@ -1,6 +1,6 @@
 import Button from "@/components/Button";
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it, mock } from "bun:test";
+import { describe, expect, test, mock } from "bun:test";
 
 const baseClassName = "rounded-md px-6 py-3 text-white";
 const colorGrayClassName = "bg-zinc-500 hover:bg-zinc-600";
@@ -11,7 +11,7 @@ const colorCustomClassName =
   "bg-purple-500 hover:bg-purple-600 rounded-2xl px-10 py-6";
 
 describe("Button", () => {
-  it("色を指定したボタンが表示できる", () => {
+  test("色を指定したボタンが表示できる", () => {
     render(<Button color="gray">グレー</Button>);
     const button = screen.getByRole("button", { name: "グレー" });
     expect(button.className).toContain(baseClassName);
@@ -36,14 +36,14 @@ describe("Button", () => {
     expect(buttonGreen.className).toContain(colorGreenClassName);
     expect(buttonGreen.textContent).toBe("グリーン");
   });
-  it("クラス名が適用される", () => {
+  test("クラス名が適用される", () => {
     render(<Button className={colorCustomClassName}>カスタムクラス</Button>);
     const button = screen.getByRole("button", { name: "カスタムクラス" });
     expect(button.className).toContain(baseClassName);
     expect(button.className).toContain(colorCustomClassName);
     expect(button.textContent).toBe("カスタムクラス");
   });
-  it("Click イベントが発火する", () => {
+  test("Click イベントが発火する", () => {
     const onClick = mock();
     render(<Button onClick={onClick}>クリック</Button>);
     const button = screen.getByRole("button", { name: "クリック" });

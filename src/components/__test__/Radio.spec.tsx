@@ -1,11 +1,11 @@
 import Radio from "@/components/Radio";
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it, mock } from "bun:test";
+import { describe, expect, test, mock } from "bun:test";
 
 const baseClassName = "mr-1";
 
 describe("Radio", () => {
-  it("ラベルとラジオボタンが表示される", () => {
+  test("ラベルとラジオボタンが表示される", () => {
     render(<Radio value="test" label="ラジオボタン表示" />);
     const radioButton = screen.getByLabelText(
       "ラジオボタン表示",
@@ -16,7 +16,7 @@ describe("Radio", () => {
     expect(label).not.toBeNull();
   });
 
-  it("クラス名が適用される", () => {
+  test("クラス名が適用される", () => {
     render(
       <Radio
         value="test"
@@ -33,7 +33,7 @@ describe("Radio", () => {
     expect(label?.className).toContain("text-2xl");
   });
 
-  it("ラジオボタンのチェックが切り替えられる", () => {
+  test("ラジオボタンのチェックが切り替えられる", () => {
     const handleChange = mock();
     render(
       <>
